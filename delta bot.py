@@ -8,26 +8,26 @@ bot = commands.Bot(command_prefix='!!')
 
 @bot.command()
 async def info(ctx):
-  embed = discord.Embed(title='Delta - Info')
+  embed = discord.Embed(title='TourmalineBot - Info')
   embed.add_field(name="This bot was made using discord.py by dhoru#7700", value="Join the server at https://discord.gg/cthA5Pv !", inline=False)
 
   await ctx.send(embed=embed)
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title='Delta - Main Commands')
+    embed = discord.Embed(title='TourmalineBot - Main Commands')
     embed.add_field(name="!!info", value="shows bot info.", inline=True)
     embed.add_field(name="!!info", value="shows bot info.", inline=True)
     embed.add_field(name="!!say <message>", value="bot repeats what you say.", inline=True)
     embed.add_field(name="!!react <emoji>", value="""reacts to your message
           with the specified emoji.""", inline=True)
     embed.add_field(name="!!ping", value="shows bot latency.", inline=True)
-    embed.set_footer(text="Delta")
+    embed.set_footer(text="Hello World")
     embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
 
     await ctx.send(embed=embed)
 
-    embed = discord.Embed(title='Delta - Fun commands:')
+    embed = discord.Embed(title='TourmalineBot - Fun commands:')
     embed.add_field(name="!!coinflip", value="flips a coin.", inline=True)
     embed.add_field(name="!!point", value="ascii finger point", inline=True)
     embed.add_field(name="!!clouds", value="ascii clouds", inline=True)
@@ -122,7 +122,7 @@ async def tr(ctx):
 
 @bot.event
 async def on_ready():
-    activity = discord.Game(name="Dhoru is epic | !!help", type=3)
+    activity = discord.Game(name="add status here", type=3)
     await bot.change_presence(status=discord.Status.online, activity=activity)
     print("Bot is ready!")
     print('Logged in as')
