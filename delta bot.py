@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import time
 import random
+import os
 bot = commands.Bot(command_prefix='!!')
 @bot.remove_command('help')
 
@@ -14,21 +15,26 @@ async def info(ctx):
 
 @bot.command()
 async def help(ctx):
-  embed = discord.Embed(title='Delta - Commands')
-  embed.add_field(name="!!info", value="shows bot info.", inline=True)
-  embed.add_field(name="!!info", value="shows bot info.", inline=True)
-  embed.add_field(name="!!say <message>", value="bot repeats what you say.", inline=True)
-  embed.add_field(name="!!react <emoji>", value="""reacts to your message
-        with the specified emoji.""", inline=True)
-  embed.add_field(name="!!ping", value="shows bot latency.", inline=True)
-  embed.add_field(name="__ASCII Art Commands:__", value="Commands which show ascii art", inline=False)
-  embed.add_field(name="!!point", value="ascii finger point", inline=True)
-  embed.add_field(name="!!clouds", value="ascii clouds", inline=True)
-  embed.add_field(name="!!communism", value="ascii communist sign", inline=True)
-  embed.set_footer(text="Delta")
-  embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
+    embed = discord.Embed(title='Delta - Main Commands')
+    embed.add_field(name="!!info", value="shows bot info.", inline=True)
+    embed.add_field(name="!!info", value="shows bot info.", inline=True)
+    embed.add_field(name="!!say <message>", value="bot repeats what you say.", inline=True)
+    embed.add_field(name="!!react <emoji>", value="""reacts to your message
+          with the specified emoji.""", inline=True)
+    embed.add_field(name="!!ping", value="shows bot latency.", inline=True)
+    embed.set_footer(text="Delta")
+    embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
 
-  await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
+
+    embed = discord.Embed(title='Delta - Fun commands:')
+    embed.add_field(name="!!coinflip", value="flips a coin.", inline=True)
+    embed.add_field(name="!!point", value="ascii finger point", inline=True)
+    embed.add_field(name="!!clouds", value="ascii clouds", inline=True)
+    embed.colour = 0xFFFFFF 
+
+    await ctx.send(embed=embed)
+
   # or: await destination.send(embed=embed)
 
 #឵឵឵឵឵឵
@@ -63,7 +69,7 @@ YMMMMMMm___     ,mMPdMMMMMMMMmYM.
                                        `MMMMMdMM
 ```""", inline=False)
   await ctx.send(embed=embed)
- 
+
 
 @bot.command()
 async def clouds(ctx):
@@ -73,26 +79,9 @@ async def clouds(ctx):
      ___            (         )
     (   )__       _(           )___
    (_______)...  (_________________)
-     
+
 ```
      ''')
-
-@bot.command()
-async def communism(ctx):
-    await ctx.send('''
-```fix
-        ._
-         `d,
-           Qb
-       _   jQ
-     .gP`  JP
-._   ' ~&.~P
- ~JJjpjJ ~&.
- jJ        ~&.
-jJ           ~'
-~       MC
-```
-                ''')
 
 @bot.command()
 async def react(ctx, arg):
@@ -108,15 +97,47 @@ async def say(ctx, *, arg):
         await ctx.send(arg)
         await ctx.message.delete()
 
+@bot.command(pass_context=True)
+async def coinflip(ctx):
+    coin = [
+        "heads",
+        "tails",]
+    await ctx.send(random.choice(coin))
+
+@bot.command(pass_context=True)
+async def kill(ctx, arg):
+    murder_message = [
+    "dies of covid-19"
+    ]
+    await ctx.send("{}".format(arg, random.choice(murder_message)))
+
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong! `{0} ms`'.format(round(bot.latency, 1)))
+
+@commands.is_owner()
+@bot.command()
+async def tr(ctx):
+  await ctx.send("https://discord.com/developers/applications/749910944951435264/bot")
 
 @bot.event
 async def on_ready():
     activity = discord.Game(name="Dhoru is epic | !!help", type=3)
     await bot.change_presence(status=discord.Status.online, activity=activity)
     print("Bot is ready!")
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('------')
+
+@bot.command(name='roll_dice', help='Simulates rolling dice.')
+async def roll(ctx, number_of_dice: int, number_of_sides: int):
+    dice = [
+        str(random.choice(range(1, number_of_sides + 1)))
+        for _ in range(number_of_dice)
+    ]
+    await ctx.send(', '.join(dice))
 
 
-bot.run('token')
+
+bot.run('insert your token here')
