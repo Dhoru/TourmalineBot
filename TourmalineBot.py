@@ -11,9 +11,9 @@ import json
 bot = commands.Bot(command_prefix='!!')
 bot.remove_command('help')
 
-reddit = praw.Reddit(client_id='MRtY6ttHixEa0A',
-                     client_secret='D6sKN7YJ84ZcBRBFjM1Up-dQLlk',
-                     user_agent='tourmalinebot by u/Dhoru_')  
+reddit = praw.Reddit(client_id='client_id',
+                     client_secret='client_secret',
+                     user_agent='user_agent')  
 
 @bot.command()
 async def info(ctx):
