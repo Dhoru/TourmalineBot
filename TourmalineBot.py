@@ -1,57 +1,52 @@
-import praw
-import discord
-from discord.ext import commands
-import time
-import random
-import os
-from catfacts import catfacts
-import platform
-import datetime
-import json
-bot = commands.Bot(command_prefix='!!')
+'''
+                 ========
+                 imports:
+                 ========
+'''
+asyncpraw                       # reddit api
+import discord                         # discord
+from discord.ext import commands       # commands
+import time                            # time
+import random                          # random
+import os                              # idk why this is even here lol
+from catfacts import catfacts          # catfacts.py list
+import platform                        # w h a t i forgot
+import datetime                        # same for this
+import json                            # json stuff coming soon
+import pyquran as q                    # pyquran
+bot = commands.Bot(command_prefix='t.', intents=discord.Intents.all())
 bot.remove_command('help')
 
-reddit = praw.Reddit(client_id='client_id',
-                     client_secret='client_secret',
-                     user_agent='user_agent')  
+#        '''
+#reddit = asyncpraw.Reddit(client_id='MRtY6ttHixEa0A',
+#                     client_secret='D6sKN7YJ84ZcBRBFjM1Up-dQLlk',
+#                     user_agent='tourmalinebot by u/Dhoru_',
+#                     password='A_legend#7700',
+#                     username='Dhoru_')  
+#        '''
 
-@bot.command()
-async def info(ctx):
-    serverCount = len(bot.guilds)
-    memberCount = len(set(bot.get_all_members()))
-
-    embed = discord.Embed(title=f'{self.bot.user.name} Stats', description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
-
-    embed.add_field(name='Bot Version:', value=self.bot.version)
-    embed.add_field(name='Python Version:', value=pythonVersion)
-    embed.add_field(name='Discord.Py Version', value=dpyVersion)
-    embed.add_field(name='Total Guilds:', value=serverCount)
-    embed.add_field(name='Total Users:', value=memberCount)
-    embed.add_field(name='Made By:', value="dhoru#7700")
-
-    embed.set_footer(text=f"Carpe Noctem | {self.bot.user.name}")
-    embed.set_author(name=bot.user.name, icon_url=self.bot.user.avatar_url)
-
-    await ctx.send(embed=embed) 
-  
+#        '''
+#with open("C:/Users/Admin/Desktop/Random Stuff/thing stuf/TourmalineBot/datas.json", "w") as file:
+#    data = json.load(file)
+#        '''
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Tourmaline - Commands", description="""
     **Main commands:**
-    `!!info` - Shows bot info (under development)
-    `!!say <message>` - Bot repeats what you say.
-    `!!react <emoji>` - Reacts to your message with the specified emoji.
-    `!!ping` - Shows bot latency.
-    `!!invite` - Link to invite the bot.
+    `t.info` - Shows bot info (under development)
+    `t.say <message>` - Bot repeats what you say.
+    `t.react <emoji>` - Reacts to your message with the specified emoji.
+    `t.ping` - Shows bot latency.
+    `t.invite` - Link to invite the bot.
 
     **Fun commands:**
-    `!!coinflip` - Flips a coin.
-    `!!meme` - Memes fresh from r/dankmemes.
-    `!!catfact` Random cat fact.
+    `t.coinflip` - Flips a coin.
+    `t.meme` - Memes fresh from r/dankmemes. (removed for a while because of problems)
+    `t.catfact` Random cat fact.
 
     **Utility/Moderation commands:**
-    `!!setnick <@user>` - Changes the specified user's nickname.
-    `!!roll <number of dice> <number of sides in each dice>` - Simulates rolling dice.
+    `t.setnick <@user>` - Changes the specified user's nickname.
+    `t.roll <number of dice> <number of sides in each dice>` - Simulates rolling dice.
     """)
     embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
     embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
@@ -59,7 +54,13 @@ async def help(ctx):
     await ctx.send(embed=embed)
   # or: await destination.send(embed=embed)
 
-#឵឵឵឵឵឵
+@bot.command()
+async def info(ctx):
+    embed=discord.Embed(title="Info")
+    embed.add_field(name="Version:", value=discord.version_info, inline=False)
+    embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
+    await ctx.send(embed=embed)
+
 @bot.command()
 async def react(ctx, arg):
     await ctx.message.add_reaction(arg)
@@ -87,11 +88,10 @@ async def ping(ctx):
 
 @bot.command()
 async def invite(ctx):
-	embed=discord.Embed(title="Invite Link", url="https://discord.com/api/oauth2/authorize?client_id=749910944951435264&permissions=8&scope=bot")
+	embed=discord.Embed(title="Invite Link", url="https://discord.com/oauth2/authorize?client_id=749910944951435264&permissions=4294967295&scope=bot")
 	embed.colour = 0xFFFFFF 
 	
 	await ctx.send(embed=embed)
-
 
 @bot.command()
 async def ohnoanyway(ctx):
@@ -106,18 +106,19 @@ async def catfact(ctx):
 async def tr(ctx):
   await ctx.send("https://discord.com/developers/applications/749910944951435264/bot")
 
-@bot.command(pass_context=True)
+@bot.command()
 async def setnick(ctx, member: discord.Member, nick):
     await member.edit(nick=nick)
     await ctx.send(f'Nickname was changed for {member.mention} ')
 
 @bot.command()
-async def tourmaline_rules(ctx):
+async def test(ctx):
     embed=discord.Embed(title="Rules:", description="<a:ruby:763440863027396628> Use common sense pls \n \n<a:ruby:763440863027396628> No mass mentioning of any form or spamming of any sort\n\n<a:ruby:763440863027396628> Do not annoy, dissolve, digest, or threaten anyone.\n \n <a:ruby:763440863027396628> No NSFW content.\n \n <a:ruby:763440863027396628> Don't abuse loopholes. \n \n<a:ruby:763440863027396628> ***Either*** your username *or* nickname should be pingable.\n \n <a:ruby:763440863027396628> No advertising servers (includes DM advertising). In case it does happen anyway, Report it to a staff member. (apply for partnership #┃partners)\n\n<a:ruby:763440863027396628> Do not DM staff about mutes/ warns.\n\n<a:ruby:763440863027396628> Alt accounts are **NOT** allowed.\n\n<a:ruby:763440863027396628> No begging for roles.\n\n<a:ruby:763440863027396628> No being an imbecile.")
     embed.colour = 0x00FF00
     await ctx.send(embed=embed)
     await ctx.message.delete()
 
+        '''
 @bot.command()
 async def meme(ctx):
     memes_submissions = reddit.subreddit('dankmemes').hot()
@@ -130,16 +131,39 @@ async def meme(ctx):
     await ctx.send(embed=embed)
 
 @bot.command()
+async def subreddit(ctx, arg):
+    postthings = await reddit.subreddit(arg).hot()
+    post_to_pick = random.randint(1, 50)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in postthings if not x.stickied)
+
+    embed=discord.Embed(title=submission.title, url=submission.url, color=0x0af0d5)
+    embed.set_image(url=submission.url)
+    await ctx.send(embed=embed)
+        '''
+
+@bot.command()
+async def ayat(ctx, sn: int, an: int):
+    embed=discord.Embed(title=q.quran.get_sura_name(sn), description=q.quran.get_verse(sura_number=sn, verse_number=an))
+    embed.color = 0xFFFFFF
+    await ctx.send(embed=embed)
+
+@bot.command
+@commands.is_owner()                     
+async def status(ctx, *, text: str):
+    await bot.change_presence(activity=discord.Game(name=text))
+
+@bot.command()
 async def roll(ctx, number_of_dice: int, number_of_sides: int):
     dice = [
         str(random.choice(range(1, number_of_sides + 1)))
         for _ in range(number_of_dice)
     ]
     await ctx.send(', '.join(dice))
-    
+        
 @bot.event
 async def on_ready():
-    activity = discord.Game(name="Dhoru is Epic | !!help", type=3)
+    activity = discord.Game(name="Dhoru is Epic | t.help", type=3)
     await bot.change_presence(status=discord.Status.online, activity=activity)
     print("------")
     print("Bot is ready!")
@@ -148,4 +172,4 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-bot.run('token')
+bot.run('NzQ5OTEwOTQ0OTUxNDM1MjY0.X0y2_Q.bAVoPsDcZuoh5cAO306_-4_ArxI')
