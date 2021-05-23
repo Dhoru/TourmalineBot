@@ -3,7 +3,6 @@
                  imports:
                  ========
 '''
-asyncpraw                       # reddit api
 import discord                         # discord
 from discord.ext import commands       # commands
 import time                            # time
@@ -17,18 +16,6 @@ import pyquran as q                    # pyquran
 bot = commands.Bot(command_prefix='t.', intents=discord.Intents.all())
 bot.remove_command('help')
 
-#        '''
-#reddit = asyncpraw.Reddit(client_id='MRtY6ttHixEa0A',
-#                     client_secret='D6sKN7YJ84ZcBRBFjM1Up-dQLlk',
-#                     user_agent='tourmalinebot by u/Dhoru_',
-#                     password='A_legend#7700',
-#                     username='Dhoru_')  
-#        '''
-
-#        '''
-#with open("C:/Users/Admin/Desktop/Random Stuff/thing stuf/TourmalineBot/datas.json", "w") as file:
-#    data = json.load(file)
-#        '''
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Tourmaline - Commands", description="""
@@ -117,30 +104,6 @@ async def test(ctx):
     embed.colour = 0x00FF00
     await ctx.send(embed=embed)
     await ctx.message.delete()
-
-        '''
-@bot.command()
-async def meme(ctx):
-    memes_submissions = reddit.subreddit('dankmemes').hot()
-    post_to_pick = random.randint(1, 50)
-    for i in range(0, post_to_pick):
-        submission = next(x for x in memes_submissions if not x.stickied)
-
-    embed=discord.Embed(title=submission.title, url=submission.url, color=0x0af0d5)
-    embed.set_image(url=submission.url)
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def subreddit(ctx, arg):
-    postthings = await reddit.subreddit(arg).hot()
-    post_to_pick = random.randint(1, 50)
-    for i in range(0, post_to_pick):
-        submission = next(x for x in postthings if not x.stickied)
-
-    embed=discord.Embed(title=submission.title, url=submission.url, color=0x0af0d5)
-    embed.set_image(url=submission.url)
-    await ctx.send(embed=embed)
-        '''
 
 @bot.command()
 async def ayat(ctx, sn: int, an: int):
