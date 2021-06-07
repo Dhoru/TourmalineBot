@@ -1,7 +1,7 @@
 '''
-                 ========
-                 imports:
-                 ========
+				 ========
+				 imports:
+				 ========
 '''
 import discord                         # discord
 from discord.ext import commands       # commands
@@ -18,60 +18,60 @@ bot.remove_command('help')
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Tourmaline - Commands", description="""
-    **Main commands:**
-    `t.info` - Shows bot info (under development)
-    `t.say <message>` - Bot repeats what you say.
-    `t.react <emoji>` - Reacts to your message with the specified emoji.
-    `t.ping` - Shows bot latency.
-    `t.invite` - Link to invite the bot.
+	embed = discord.Embed(title="Tourmaline - Commands", description="""
+	**Main commands:**
+	`t.info` - Shows bot info (under development)
+	`t.say <message>` - Bot repeats what you say.
+	`t.react <emoji>` - Reacts to your message with the specified emoji.
+	`t.ping` - Shows bot latency.
+	`t.invite` - Link to invite the bot.
 
-    **Fun commands:**
-    `t.coinflip` - Flips a coin.
-    `t.meme` - Memes fresh from r/dankmemes. (removed for a while because of problems)
-    `t.catfact` Random cat fact.
+	**Fun commands:**
+	`t.coinflip` - Flips a coin.
+	`t.meme` - Memes fresh from r/dankmemes. (removed for a while because of problems)
+	`t.catfact` Random cat fact.
 
-    **Utility/Moderation commands:**
-    `t.setnick <@user>` - Changes the specified user's nickname.
-    `t.roll <number of dice> <number of sides in each dice>` - Simulates rolling dice.
-    """)
-    embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
-    embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
+	**Utility/Moderation commands:**
+	`t.setnick <@user>` - Changes the specified user's nickname.
+	`t.roll <number of dice> <number of sides in each dice>` - Simulates rolling dice.
+	""")
+	embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
+	embed.colour = 0xFFFFFF  # can be set in 'discord.Embed()' too
 
-    await ctx.send(embed=embed)
+	await ctx.send(embed=embed)
   # or: await destination.send(embed=embed)
 
 @bot.command()
 async def info(ctx):
-    embed=discord.Embed(title="Info")
-    embed.add_field(name="Version:", value=discord.version_info, inline=False)
-    embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
-    await ctx.send(embed=embed)
+	embed=discord.Embed(title="Info")
+	embed.add_field(name="Version:", value=discord.version_info, inline=False)
+	embed.set_footer(text="TourmalineBot - Made by dhoru#7700")
+	await ctx.send(embed=embed)
 
 @bot.command()
 async def react(ctx, arg):
-    await ctx.message.add_reaction(arg)
+	await ctx.message.add_reaction(arg)
 
 @bot.command()
 async def say(ctx, *, arg):
-    message_components = arg.split()
-    if "@everyone" in message_components or "@here" in message_components:
-        await ctx.send("You cannot have ``@everyone`` or ``@here`` in your message!")
-        await ctx.message.delete()
-    else:
-        await ctx.send(arg)
-        await ctx.message.delete()
+	message_components = arg.split()
+	if "@everyone" in message_components or "@here" in message_components:
+		await ctx.send("You cannot have ``@everyone`` or ``@here`` in your message!")
+		await ctx.message.delete()
+	else:
+		await ctx.send(arg)
+		await ctx.message.delete()
 
 @bot.command(pass_context=True)
 async def coinflip(ctx):
-    coin = [
-        "heads",
-        "tails",]
-    await ctx.send(random.choice(coin))
+	coin = [
+		"heads",
+		"tails",]
+	await ctx.send(random.choice(coin))
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send('Pong! `{0} ms`'.format(round(bot.latency, 1)))
+	await ctx.send('Pong! `{0} ms`'.format(round(bot.latency, 1)))
 
 @bot.command()
 async def invite(ctx):
@@ -86,7 +86,7 @@ async def ohnoanyway(ctx):
 
 @bot.command()
 async def catfact(ctx):
-    await ctx.send(random.choice(catfacts))
+	await ctx.send(random.choice(catfacts))
 
 @commands.is_owner()
 @bot.command()
@@ -95,44 +95,44 @@ async def tr(ctx):
 
 @bot.command()
 async def setnick(ctx, member: discord.Member, nick):
-    await member.edit(nick=nick)
-    await ctx.send(f'Nickname was changed for {member.mention} ')
+	await member.edit(nick=nick)
+	await ctx.send(f'Nickname was changed for {member.mention} ')
 
 @bot.command()
 async def test(ctx):
-    embed=discord.Embed(title="Rules:", description="<a:ruby:763440863027396628> Use common sense pls \n \n<a:ruby:763440863027396628> No mass mentioning of any form or spamming of any sort\n\n<a:ruby:763440863027396628> Do not annoy, dissolve, digest, or threaten anyone.\n \n <a:ruby:763440863027396628> No NSFW content.\n \n <a:ruby:763440863027396628> Don't abuse loopholes. \n \n<a:ruby:763440863027396628> ***Either*** your username *or* nickname should be pingable.\n \n <a:ruby:763440863027396628> No advertising servers (includes DM advertising). In case it does happen anyway, Report it to a staff member. (apply for partnership #┃partners)\n\n<a:ruby:763440863027396628> Do not DM staff about mutes/ warns.\n\n<a:ruby:763440863027396628> Alt accounts are **NOT** allowed.\n\n<a:ruby:763440863027396628> No begging for roles.\n\n<a:ruby:763440863027396628> No being an imbecile.")
-    embed.colour = 0x00FF00
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
+	embed=discord.Embed(title="Rules:", description="<a:ruby:763440863027396628> Use common sense pls \n \n<a:ruby:763440863027396628> No mass mentioning of any form or spamming of any sort\n\n<a:ruby:763440863027396628> Do not annoy, dissolve, digest, or threaten anyone.\n \n <a:ruby:763440863027396628> No NSFW content.\n \n <a:ruby:763440863027396628> Don't abuse loopholes. \n \n<a:ruby:763440863027396628> ***Either*** your username *or* nickname should be pingable.\n \n <a:ruby:763440863027396628> No advertising servers (includes DM advertising). In case it does happen anyway, Report it to a staff member. (apply for partnership #┃partners)\n\n<a:ruby:763440863027396628> Do not DM staff about mutes/ warns.\n\n<a:ruby:763440863027396628> Alt accounts are **NOT** allowed.\n\n<a:ruby:763440863027396628> No begging for roles.\n\n<a:ruby:763440863027396628> No being an imbecile.")
+	embed.colour = 0x00FF00
+	await ctx.send(embed=embed)
+	await ctx.message.delete()
 
 @bot.command()
 async def ayat(ctx, sn: int, an: int):
-    embed=discord.Embed(title=q.quran.get_sura_name(sn), description=q.quran.get_verse(sura_number=sn, verse_number=an))
-    embed.color = 0xFFFFFF
-    await ctx.send(embed=embed)
+	embed=discord.Embed(title=q.quran.get_sura_name(sn), description=q.quran.get_verse(sura_number=sn, verse_number=an))
+	embed.color = 0xFFFFFF
+	await ctx.send(embed=embed)
 
 @bot.command
 @commands.is_owner()                     
 async def status(ctx, *, text: str):
-    await bot.change_presence(activity=discord.Game(name=text))
+	await bot.change_presence(activity=discord.Game(name=text))
 
 @bot.command()
 async def roll(ctx, number_of_dice: int, number_of_sides: int):
-    dice = [
-        str(random.choice(range(1, number_of_sides + 1)))
-        for _ in range(number_of_dice)
-    ]
-    await ctx.send(', '.join(dice))
-        
+	dice = [
+		str(random.choice(range(1, number_of_sides + 1)))
+		for _ in range(number_of_dice)
+	]
+	await ctx.send(', '.join(dice))
+		
 @bot.event
 async def on_ready():
-    activity = discord.Game(name="Dhoru is Epic | t.help", type=3)
-    await bot.change_presence(status=discord.Status.online, activity=activity)
-    print("------")
-    print("Bot is ready!")
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
+	activity = discord.Game(name="Dhoru is Epic | t.help", type=3)
+	await bot.change_presence(status=discord.Status.online, activity=activity)
+	print("------")
+	print("Bot is ready!")
+	print('Logged in as')
+	print(bot.user.name)
+	print(bot.user.id)
+	print('------')
 
 bot.run('TOKEN')
