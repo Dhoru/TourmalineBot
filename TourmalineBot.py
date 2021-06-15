@@ -28,7 +28,6 @@ async def help(ctx):
 
 	**Fun commands:**
 	`t.coinflip` - Flips a coin.
-	`t.meme` - Memes fresh from r/dankmemes. (removed for a while because of problems)
 	`t.catfact` Random cat fact.
 
 	**Utility/Moderation commands:**
